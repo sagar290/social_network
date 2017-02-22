@@ -17,12 +17,12 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('username');
             $table->string('password');
-            $table->string('first_name')->nullabale();
-            $table->string('last_name')->nullabale();
-            $table->string('location')->nullabale();
-            $table->string('remember_token')->nullabale();
+            $table->string('first_name')->default('');
+            $table->string('last_name')->default('');
+            $table->string('location')->default('');
+            $table->string('remember_token')->default('');
             $table->timestamps();
-            
+
         });
     }
 
