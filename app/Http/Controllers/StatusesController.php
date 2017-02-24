@@ -45,11 +45,12 @@ class StatusesController extends Controller
             return redirect()->route('home');
         }
         
-        $reply = Status::create([
-            'body' => $request->input("reply-{$statusId}"), 
-        ])->user()->associate(Auth::user());
+        $reply = new Status;
+        $reply->user_id = Auth::user()->id;
+        $reply->parent_id = $status->id;
+        $reply->body = $request["reply-{$statusId}"];
         
-        $status->replies()->save($reply);
+        $reply->save();
         
         return redirect()->back();
     }
